@@ -1,6 +1,8 @@
 package serviceDiscount.Application.service
 
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 import serviceDiscount.Application.Exception.CampaignDuplicateException
 import serviceDiscount.Application.dto.*
 
@@ -115,26 +117,46 @@ class CalculatePriceService {
                 is FixedAmountCouponDto -> {
                     couponTypeCount++
                     couponTypeData = campaign
+                    if (campaign.amount < 0){
+                        println("Amount must must Not Less than 0")
+                        throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Amount must must Not Less than 0")
+                    }
                 }
 
                 is PercentageDiscountCouponDto -> {
                     couponTypeCount++
                     couponTypeData = campaign
+                    if (campaign.percentage < 0 || campaign.percentage > 100){
+                        println("Percentage must Not Less than 0 Or More than 100")
+                        throw ResponseStatusException(HttpStatus.BAD_REQUEST, "percentage must Not Less than 0 Or More than 100")
+                    }
                 }
 
                 is PercentageCategoryDiscountOnTopDto -> {
                     onTopTypeCount++
                     onTopTypeData = campaign
+                    if (campaign.percentage < 0 || campaign.percentage > 100){
+                        println("Percentage must Not Less than 0 Or More than 100")
+                        throw ResponseStatusException(HttpStatus.BAD_REQUEST, "percentage must Not Less than 0 Or More than 100")
+                    }
                 }
 
                 is DiscountByPointOnTopDto -> {
                     onTopTypeCount++
                     onTopTypeData = campaign
+                    if (campaign.point < 0 ){
+                        println("Point must Not Less than 0")
+                        throw ResponseStatusException(HttpStatus.BAD_REQUEST, "every And discount must Not Less than 0")
+                    }
                 }
 
                 is SpecialCampaignsSeasonalDto -> {
                     seasonalTypeCount++
                     seasonalTypeData = campaign
+                    if (campaign.every < 0 || campaign.discount < 0){
+                        println("Every And Discount must Not Less than 0")
+                        throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Point And discount must Not Less than 0")
+                    }
                 }
             }
         }
