@@ -1,6 +1,7 @@
 package serviceDiscount.Application.service
 
 import org.springframework.stereotype.Service
+import serviceDiscount.Application.Exception.CampaignDuplicateException
 import serviceDiscount.Application.dto.*
 
 @Service
@@ -30,7 +31,8 @@ class CalculatePriceService {
                 }
 
                 else -> {
-                    throw RuntimeException()
+                    println("============== ERROR ============")
+                    throw CampaignDuplicateException()
                 }
             }
         }
@@ -60,7 +62,8 @@ class CalculatePriceService {
                 }
 
                 else -> {
-                    throw RuntimeException()
+                    println("============== ERROR ============")
+                    throw CampaignDuplicateException()
                 }
             }
         }
@@ -71,7 +74,8 @@ class CalculatePriceService {
                 }
 
                 else -> {
-                    throw RuntimeException()
+                    println("============== ERROR ============")
+                    throw CampaignDuplicateException()
                 }
             }
         }
@@ -135,7 +139,8 @@ class CalculatePriceService {
             }
         }
         if (couponTypeCount > 1 || onTopTypeCount > 1 || seasonalTypeCount > 1) {
-            throw RuntimeException()
+            println("============== ERROR ============")
+            throw CampaignDuplicateException()
         }
 
         return checkDiscountResultDto(
