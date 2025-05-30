@@ -44,7 +44,7 @@ class CalculatePriceService {
 
                     request.cart.forEach {
                         if (checkDiscountResult.onTop.category == it.category) {
-                            categoryTotalPrice = +it.price * it.quantity
+                            categoryTotalPrice = categoryTotalPrice!! + (it.price * it.quantity)
                         }
                     }
 
