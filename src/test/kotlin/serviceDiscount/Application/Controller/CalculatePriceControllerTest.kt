@@ -12,9 +12,7 @@ import serviceDiscount.Application.service.CalculatePriceService
 import kotlin.test.assertEquals
 
 class CalculatePriceControllerTest{
-    private val calculatePrice = mockk<CalculatePriceService>()
-
-
+    private val calculatePriceService = mockk<CalculatePriceService>()
 
     @Test
     fun `Get total price from cart`() {
@@ -26,8 +24,9 @@ class CalculatePriceControllerTest{
 
         val requestDto = CalculateDiscountRequestDto(cart = cart, campaigns = emptyList())
 
-        val result = calculateDiscointResponseDto(totalPrice = 1550.0,
-                totalOfCategoryDiscount = 700.0,
+        val result = calculateDiscointResponseDto(
+                totalPrice = 1550.0,
+                totalOfCategoryDiscount = null,
                 twentyOfTotal = 310,
                 userPointUse = null,
                 couponDiscount = 0.0,
@@ -38,13 +37,13 @@ class CalculatePriceControllerTest{
 
         val expectResult = result
 
-        every { calculatePrice.calculateDiscount(requestDto) } returns expectResult
+        every { calculatePriceService.calculateDiscount(requestDto) } returns expectResult
 
-        val actualResult = calculatePrice.calculateDiscount(requestDto)
+        val actualResult = calculatePriceService.calculateDiscount(requestDto)
 
         assertEquals(expectResult, actualResult)
 
-        verify(exactly = 1) { calculatePrice.calculateDiscount(requestDto) }
+        verify(exactly = 1) { calculatePriceService.calculateDiscount(requestDto) }
     }
 
     @Test
@@ -62,7 +61,7 @@ class CalculatePriceControllerTest{
         val requestDto = CalculateDiscountRequestDto(cart = cart, campaigns = campaigns)
 
         val result = calculateDiscointResponseDto(totalPrice = 1550.0,
-                totalOfCategoryDiscount = 700.0,
+                totalOfCategoryDiscount = null,
                 twentyOfTotal = 310,
                 userPointUse = null,
                 couponDiscount = 0.0,
@@ -74,13 +73,13 @@ class CalculatePriceControllerTest{
 
         val expectResult = result
 
-        every { calculatePrice.calculateDiscount(requestDto) } returns expectResult
+        every { calculatePriceService.calculateDiscount(requestDto) } returns expectResult
 
-        val actualResult = calculatePrice.calculateDiscount(requestDto)
+        val actualResult = calculatePriceService.calculateDiscount(requestDto)
 
         assertEquals(expectResult, actualResult)
 
-        verify(exactly = 1) { calculatePrice.calculateDiscount(requestDto) }
+        verify(exactly = 1) { calculatePriceService.calculateDiscount(requestDto) }
     }
 
     @Test
@@ -98,7 +97,7 @@ class CalculatePriceControllerTest{
         val requestDto = CalculateDiscountRequestDto(cart = cart, campaigns = campaigns)
 
         val result = calculateDiscointResponseDto(totalPrice = 1550.0,
-                totalOfCategoryDiscount = 700.0,
+                totalOfCategoryDiscount = null,
                 twentyOfTotal = 310,
                 userPointUse = null,
                 couponDiscount = 775.0,
@@ -110,13 +109,13 @@ class CalculatePriceControllerTest{
 
         val expectResult = result
 
-        every { calculatePrice.calculateDiscount(requestDto) } returns expectResult
+        every { calculatePriceService.calculateDiscount(requestDto) } returns expectResult
 
-        val actualResult = calculatePrice.calculateDiscount(requestDto)
+        val actualResult = calculatePriceService.calculateDiscount(requestDto)
 
         assertEquals(expectResult, actualResult)
 
-        verify(exactly = 1) { calculatePrice.calculateDiscount(requestDto) }
+        verify(exactly = 1) { calculatePriceService.calculateDiscount(requestDto) }
     }
 
     @Test
@@ -135,7 +134,7 @@ class CalculatePriceControllerTest{
 
         val requestDto = CalculateDiscountRequestDto(cart = cart, campaigns = campaigns)
 
-        every { calculatePrice.calculateDiscount(requestDto) } throws CampaignDuplicateException()
+        every { calculatePriceService.calculateDiscount(requestDto) } throws CampaignDuplicateException()
 
         assertThrows<RuntimeException> {
             throw RuntimeException("There are same campaigns in the same category.")
