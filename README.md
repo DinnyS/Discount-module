@@ -1,6 +1,8 @@
 # Discount-module
 
-Name : Sornnarai Rattanasombud
+Name : Sornnarai Rattanasombud (Din)
+
+PhoneNo : 083-0499479
 
 IDE : IntelliJ
 
