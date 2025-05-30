@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="serviceDiscount.Application.Service.CalculatePriceServiceTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-05-30T00:54:19.403Z" hostname="MSI" time="0.861">
+  <properties/>
+  <testcase name="Get total price from cart()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.701"/>
+  <testcase name="Get total price from cart and PercentageDiscountCoupon()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.014"/>
+  <testcase name="Get total price from cart and 3 campaign not same category()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.013"/>
+  <testcase name="Get total price from cart and PercentageCategoryDiscountOnTopDto()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.012"/>
+  <testcase name="Get total price from cart and FixedAmountCoupon()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.009"/>
+  <testcase name="have same category campaign And Throw exception()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.073"/>
+  <testcase name="Get total price from cart and DiscountByPointOnTopDto()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.015"/>
+  <testcase name="Get total price from cart and SpecialCampaignsSeasonalDto()" classname="serviceDiscount.Application.Service.CalculatePriceServiceTest" time="0.012"/>
+  <system-out><![CDATA[totalPrice ========== 1550.0
+totalDiscount ========== 0.0
+finalPrice ========== 1550.0
+totalPrice ========== 1550.0
+totalDiscount ========== 775.0
+finalPrice ========== 775.0
+totalPrice ========== 1550.0
+totalDiscount ========== 430.0
+finalPrice ========== 1120.0
+totalPrice ========== 1550.0
+totalDiscount ========== 350.0
+finalPrice ========== 1200.0
+totalPrice ========== 1550.0
+totalDiscount ========== 50.0
+finalPrice ========== 1500.0
+totalPrice ========== 1550.0
+totalDiscount ========== 300.0
+finalPrice ========== 1250.0
+totalPrice ========== 1550.0
+totalDiscount ========== 30.0
+finalPrice ========== 1520.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
